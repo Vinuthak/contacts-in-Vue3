@@ -19,6 +19,9 @@
                     {{ isFavorite ? 'Remove From Favourite' : 'Add to Favourite' }}
                 </button>
             </div> 
+            <div class="col-3">
+                 <LuckyNumber></LuckyNumber>
+            </div>
         </div>
         <span class="float-end small"   :v-if="ownerName != ''">Owner Name: {{ ownerName }}</span>
     </div>
@@ -26,18 +29,15 @@
 
 <script setup>
     import { ref } from 'vue';
-    
+    import LuckyNumber from './LuckyNumber.vue';
+
     const email = ref("example@gmail.com");
     const props = defineProps({ 
         name: {type:String, required:true},
         phone: Number,
         email: {type:String, required:false, default:"n/a"},
         ownerName:String,
-        isFavorite:Boolean
+        isFavorite:Boolean,
         });
     const emit = defineEmits(["update-favorite"]);
-
-    function toggleFavorite(){
-        // emit("update-favorite", {isFavorite: props.isFavorite, name: props.name});
-    }
 </script>

@@ -1,8 +1,10 @@
 <template>
-    <div class="bg-black text pt-3">
+    <div class="bg-black text pt-3" :style="{ height: '100vh' }">
+        <h1 class="text-center text-success">ContactOpedia</h1>
         <div class="container">
-            <div class="text-white float-end">
-                Contact Owner Name: <input type="text" v-model="ownerName"/>
+            <div class="row text-white p-2 mb-2">
+                <div class="col-6">Owner Name : <input type="text" v-model="ownerName"/></div>
+                <div class="col-6">Lucky Number : <input type="text" v-model.number="maxNumber"/></div>
             </div>
             <br><br>
 
@@ -30,9 +32,13 @@
 <script setup>
     import Contact from './components/Contact.vue';
     import AddContact from './components/AddContact.vue';
-    import { ref, reactive } from 'vue';
+    import { ref, reactive, provide } from 'vue';
 
     const ownerName = ref("abcd_z");
+
+    const maxNumber = ref(100);
+    provide('maxLuckyNumber', maxNumber);
+
     const contacts = reactive([
         {
             name: "JayRam",
@@ -40,12 +46,12 @@
             ownerName: ownerName,
             isFavorite: false
         },
-        // {
-        //     name: "MohanLal",
-        //     phone: 22222,
-        //     ownerName: ownerName,
-        //     isFavorite: true
-        // },
+        {
+            name: "MohanLal",
+            phone: 22222,
+            ownerName: ownerName,
+            isFavorite: true
+        },
         // {
         //     name: "NTR",
         //     phone: 33333,
