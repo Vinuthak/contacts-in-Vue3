@@ -9,7 +9,7 @@
             <br><br>
 
             <div>
-                <AddContact @add-contact="addToContacts($event)"></AddContact>
+                <AddContact :addToContacts="addToContacts"></AddContact>
             </div>
             <div class="row">
                 <div class="col-12" v-for="contact in contacts" :key="contact.name">
