@@ -2,7 +2,7 @@
     <div class="container border rounded p-2">
         <div class="text-center text-white">Add Contact</div>
         
-        <form @submit.prevent="addContact()">
+        <form @submit.prevent="preventSubmit()">
             <div class="row">
                 <div class="col-4">
                     <input type="text" class="form-control" v-model="contact.name" placeholder="Name"/>
@@ -18,7 +18,6 @@
                 <button 
                     type="submit" 
                     class="btn btn-secondary w-100" 
-                    @click="emit('add-contact',contact)"
                 >
                     Add Contact
                 </button>
@@ -29,21 +28,19 @@
 </template>
 
 <script setup>
-    import { reactive, defineEmits } from 'vue';
+    import { reactive, defineProps } from 'vue';
 
     const contact = reactive({
         name: "",
         phone: "",
-        email: ""
+        email: "",
     });
 
-    function addContact(){
-        // console.log( contact);
-        // contact.name = "";
-        // contact.phone = "";
-        // contact.email = "";
+    const props = defineProps({
+        addToContacts: Function
+    })
+    
+    function preventSubmit(){
+        props.addToContacts(contact);
     }
-
-    const emit = defineEmits(["add-contact"]);
-
 </script>
